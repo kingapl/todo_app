@@ -31,3 +31,13 @@ def edit(request, task_id):
 
     context = {'task': task, 'form': form}
     return render(request, 'tasks/edit.html', context)
+
+def delete(request, task_id):
+    task = Task.objects.get(id=task_id)
+
+    if request.method == 'POST':
+        task.delete()
+        return redirect('tasks:index')
+
+    context = {'task': task}
+    return render(request, 'tasks/delete.html', context)

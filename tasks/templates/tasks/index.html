@@ -8,8 +8,14 @@
 
 {% for task in tasks %}
   {% if task.complete == False %}
-    <p>{{ task }} <a href="{% url 'tasks:edit' task.id %}">Edit</a></p>
+    <p>{{ task }} 
+      <a href="{% url 'tasks:edit' task.id %}">Edit</a>
+      <a href="{% url 'tasks:delete' task.id %}">Delete</a>
+    </p>
   {% else %}
-    <p><s>{{ task }}</s> <a href="{% url 'tasks:edit' task.id %}">Edit</a></p>
+    <p><s>{{ task }}</s> 
+      <a href="{% url 'tasks:edit' task.id %}">Edit</a>
+      <a href="{% url 'tasks:delete' task.id %}">Delete</a>
+    </p>
   {% endif%}
 {% endfor %}
