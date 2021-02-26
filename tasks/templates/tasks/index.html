@@ -5,3 +5,7 @@
   {{ form }}
   <button name="submit">Add</button>
 </form>
+
+{% for task in tasks %}
+  <p>{{ task }}</p>
+{% endfor %}

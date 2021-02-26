@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
 
+from .models import Task
 from .forms import TaskForm
 
 
 def index(request):
+    tasks = Task.objects.all()
+
     if request.method != 'POST':
         form = TaskForm()
     else:
@@ -12,5 +15,5 @@ def index(request):
             form.save()
             return redirect('tasks:index')
 
-    context = {'form': form}
+    context = {'tasks': tasks, 'form': form}
     return render(request, 'tasks/index.html', context)
