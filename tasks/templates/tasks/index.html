@@ -2,10 +2,14 @@
 
 <form method="post">
   {% csrf_token %}
-  {{ form }}
+  {{ form.title }}
   <button name="submit">Add</button>
 </form>
 
 {% for task in tasks %}
-  <p>{{ task }} <a href="{% url 'tasks:edit' task.id %}">Edit</a></p>
+  {% if task.complete == False %}
+    <p>{{ task }} <a href="{% url 'tasks:edit' task.id %}">Edit</a></p>
+  {% else %}
+    <p><s>{{ task }}</s> <a href="{% url 'tasks:edit' task.id %}">Edit</a></p>
+  {% endif%}
 {% endfor %}
