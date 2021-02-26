@@ -7,5 +7,5 @@
 </form>
 
 {% for task in tasks %}
-  <p>{{ task }}</p>
+  <p>{{ task }} <a href="{% url 'tasks:edit' task.id %}">Edit</a></p>
 {% endfor %}

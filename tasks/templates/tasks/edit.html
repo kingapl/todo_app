@@ -1,0 +1,7 @@
+<p>Edit {{ task }}</p>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form }}
+  <button name="submit">Edit</button>
+</form>
