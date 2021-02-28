@@ -1,21 +1,35 @@
-<p>To Do Application</p>
+{% extends "tasks/base.html" %}
 
-<form method="post">
+{% block content %}
+
+<form method="post" class="form" >
   {% csrf_token %}
   {{ form.title }}
-  <button name="submit">Add</button>
+  <button name="submit" class="add-btn">Add</button>
 </form>
 
-{% for task in tasks %}
-  {% if task.complete == False %}
-    <p>{{ task }} 
-      <a href="{% url 'tasks:edit' task.id %}">Edit</a>
-      <a href="{% url 'tasks:delete' task.id %}">Delete</a>
-    </p>
-  {% else %}
-    <p><s>{{ task }}</s> 
-      <a href="{% url 'tasks:edit' task.id %}">Edit</a>
-      <a href="{% url 'tasks:delete' task.id %}">Delete</a>
-    </p>
-  {% endif%}
-{% endfor %}
+<div class="tasks">
+  {% for task in tasks %}
+    {% if task.complete == False %}
+      <div class="task">
+        <div class="task-name"><p>{{ task }}</p></div>
+        <div class="task-options">
+          <a href="{% url 'tasks:edit' task.id %}" class="edit-btn">Edit</a>
+          <a href="{% url 'tasks:delete' task.id %}" class="delete-btn">Delete</a>
+        </div>
+      </div>
+    {% else %}
+      <div class="task">
+        <div class="task-name">
+          <p><s>{{ task }}</s></p>
+        </div>
+        <div class="task-options">
+          <a href="{% url 'tasks:edit' task.id %}" class="edit-btn">Edit</a>
+          <a href="{% url 'tasks:delete' task.id %}" class="delete-btn">Delete</a>
+        </div>
+      </div>
+    {% endif%}
+  {% endfor %}
+</div>
+
+{% endblock content %}

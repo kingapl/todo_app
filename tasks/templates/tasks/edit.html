@@ -1,7 +1,15 @@
-<p>Edit {{ task }}</p>
+{% extends "tasks/base.html" %}
 
-<form method="post">
+{% block content %}
+
+<div class="info">
+  <p>Edit <b>{{ task }}</b></p>
+</div>
+
+<form method="post" class="form">
   {% csrf_token %}
   {{ form }}
-  <button name="submit">Edit</button>
+  <button name="submit" class="submit-btn">Edit</button>
 </form>
+
+{% endblock content %}
