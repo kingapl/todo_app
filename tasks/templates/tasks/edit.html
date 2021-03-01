@@ -6,7 +6,7 @@
   <p>Edit <b>{{ task }}</b></p>
 </div>
 
-<form method="post" class="form">
+<form method="post" action="{% url 'tasks:edit' task.id %}" class="form">
   {% csrf_token %}
   {{ form }}
   <button name="submit" class="submit-btn">Edit</button>

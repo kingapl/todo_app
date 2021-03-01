@@ -6,7 +6,7 @@
   <p>Delete task</p>
 </div>
 
-<form method="post" class="form info">
+<form method="post" action="{% url 'tasks:delete' task.id %}" class="form info">
   {% csrf_token %}
   <p>Are you sure you want to delete <b>{{ task }}?</b></p>
   <a href="{% url 'tasks:index' %}" class="cancel-btn">Cancel</a>
